@@ -1,4 +1,5 @@
 {
+    "python.locator": "js", // Essential for Python functionality due to a Windows-specific issue
     "files.watcherExclude": {
         "**/.git/objects/**": true,
         "**/.git/subtree-cache/**": true,
@@ -6,5 +7,26 @@
         ".flatpak/**": true,
         "_build/**": true
     },
-    "python.locator": "js"
+    "terminal.integrated.profiles.linux": {
+        "nix-shell": {
+            "path": "nix-shell"
+        }
+    },
+    "terminal.integrated.profiles.osx": {
+        "nix-shell": {
+            "path": "nix-shell"
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "nix-shell",
+    "terminal.integrated.defaultProfile.osx": "nix-shell",
+    "terminal.integrated.profiles.windows": {
+        "PowerShell": {
+            "path": [
+                "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
+            ],
+            "args": [],
+            "icon": "terminal-powershell"
+        }
+    },
 }

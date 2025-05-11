@@ -18,8 +18,9 @@ try:
     locale.bindtextdomain(app_id, localedir)
     locale.textdomain(app_id)
 except AttributeError as e:
-    # Python built without gettext support does not have
-    # bindtextdomain() and textdomain().
+    # If Python is built without gettext support, the functions
+    # bindtextdomain() and textdomain() will not be available.
+    # This is commonly the case with MSYS2 on Windows.
     gettext.bindtextdomain(app_id, localedir)
     gettext.textdomain(app_id)
 gettext.install('mes-monitor', localedir)
