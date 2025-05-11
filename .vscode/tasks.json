@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Meson Cleanup and Setup/Install",
+      "label": "Meson Cleanup and Setup/Install (Nix-Shell)",
       "type": "shell",
       "command": "if [ -d \"_build\" ]; then ninja -C _build uninstall && rm -rf _build target; fi && meson setup _build --prefix=\"$(pwd)/target\" && meson install -C _build",
       "problemMatcher": [],
@@ -10,6 +10,12 @@
         "reveal": "silent",
         "focus": false,
         "panel": "shared"
+      },
+      "options": {
+        "shell": {
+          "executable": "nix-shell",
+          "args": ["--command"]
+        }
       }
     },
     {

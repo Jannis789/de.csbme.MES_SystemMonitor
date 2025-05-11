@@ -8,7 +8,7 @@
       "program": "${workspaceFolder}/target/bin/mes-monitor",
       "args": [],
       "cwd": "${workspaceFolder}",
-      "preLaunchTask": "Meson Cleanup and Setup/Install",
+      "preLaunchTask": "Meson Cleanup and Setup/Install (Nix-Shell)",
       "console": "integratedTerminal"
     },
     {
