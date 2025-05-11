@@ -8,17 +8,17 @@
       "program": "${workspaceFolder}/target/bin/mes-monitor",
       "args": [],
       "cwd": "${workspaceFolder}",
-      "preLaunchTask": "Meson Cleanup and Setup/Install"
+      "preLaunchTask": "Meson Cleanup and Setup/Install",
+      "console": "integratedTerminal"
     },
     {
-      "name": "Nur Task ausführen",
-      "python": "C:\\msys64\\mingw64\\bin\\python",
+      "name": "test",
       "type": "debugpy",
       "request": "launch",
-      "program": "${workspaceFolder}/target/bin/mes-monitor",
+      "program": "${workspaceFolder}\\target\\bin\\mes-monitor",
       "args": [],
-      "cwd": "${workspaceFolder}",
-      "preLaunchTask": "Meson Cleanup and Setup/Install (Windows)"
+      "preLaunchTask": "Meson Cleanup and Setup/Install (Windows - PowerShell)",
+      "console": "integratedTerminal"
     }
   ]
 }
