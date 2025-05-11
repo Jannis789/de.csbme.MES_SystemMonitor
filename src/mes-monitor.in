@@ -13,8 +13,14 @@ localedir = '@localedir@'
 
 sys.path.insert(1, pkgdatadir)
 signal.signal(signal.SIGINT, signal.SIG_DFL)
-locale.bindtextdomain('mes-monitor', localedir)
-locale.textdomain('mes-monitor')
+try:
+    locale.bindtextdomain(app_id, locale_dir)
+    locale.textdomain(app_id)
+except AttributeError as e:
+    # Python built without gettext support does not have
+    # bindtextdomain() and textdomain().
+    gettext.bindtextdomain(app_id, locale_dir)
+    gettext.textdomain(app_id)
 gettext.install('mes-monitor', localedir)
 
 if __name__ == '__main__':

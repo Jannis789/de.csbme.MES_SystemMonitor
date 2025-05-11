@@ -1,14 +1,24 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-      {
-        "name": "Meson Build & Install",
-        "type": "debugpy",
-        "request": "launch",
-        "program": "${workspaceFolder}/target/bin/mes-monitor",
-        "args": [],
-        "cwd": "${workspaceFolder}",
-        "preLaunchTask": "Meson Cleanup and Setup/Install",
-      }
-    ]
-  }
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Meson Build & Install",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/target/bin/mes-monitor",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Meson Cleanup and Setup/Install"
+    },
+    {
+      "name": "Nur Task ausführen",
+      "python": "C:\\msys64\\mingw64\\bin\\python",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/target/bin/mes-monitor",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Meson Cleanup and Setup/Install (Windows)"
+    }
+  ]
+}
