@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Meson Build & Install",
+      "name": "Meson Build & Install & Debug",
       "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/target/bin/mes-monitor",
@@ -12,7 +12,7 @@
       "console": "integratedTerminal"
     },
     {
-      "name": "test",
+      "name": "Meson Build & Install & Debug (Windows - PowerShell)",
       "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}\\target\\bin\\mes-monitor",
