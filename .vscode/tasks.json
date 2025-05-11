@@ -4,7 +4,7 @@
     {
       "label": "Meson Cleanup and Setup/Install",
       "type": "shell",
-      "command": "ninja -C _build uninstall && rm -rf _build target && meson setup _build --prefix=\"$(pwd)/target\" && meson install -C _build",
+      "command": "if [ -d \"_build\" ]; then ninja -C _build uninstall && rm -rf _build target; fi && meson setup _build --prefix=\"$(pwd)/target\" && meson install -C _build",
       "problemMatcher": [],
       "presentation": {
         "reveal": "silent",
