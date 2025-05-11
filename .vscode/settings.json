@@ -6,9 +6,5 @@
         ".flatpak/**": true,
         "_build/**": true
     },
-    "mesonbuild.configureOnOpen": false,
-    "mesonbuild.buildFolder": "_build",
-    "mesonbuild.mesonPath": "${workspaceFolder}/.flatpak/meson.sh",
-    "C_Cpp.default.compileCommands": "/home/jannis/Projects/MES-Monitor/_build/compile_commands.json",
-    "C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild"
+    "python.locator": "js"
 }

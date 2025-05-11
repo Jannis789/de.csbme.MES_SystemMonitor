@@ -5,19 +5,32 @@
       "label": "Meson Cleanup and Setup/Install",
       "type": "shell",
       "command": "ninja -C _build uninstall && rm -rf _build target && meson setup _build --prefix=\"$(pwd)/target\" && meson install -C _build",
-      "problemMatcher": []
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared"
+      }
     },
     {
-      "label": "Meson Cleanup and Setup/Install (Windows)", // Ensure this matches the preLaunchTask in launch.json
+      "label": "Meson Cleanup and Setup/Install (Windows - PowerShell)",
       "type": "shell",
-      "command": "echo",
-      "args": ["test"],
+      "command": "powershell",
+      "args": [
+        "-Command",
+        "if (Test-Path \"_build\") { Remove-Item -Recurse -Force \"_build\" } ; if (Test-Path \"target\") { Remove-Item -Recurse -Force \"target\" } ; meson setup _build --prefix=\"$(pwd)\\target\" ; meson install -C _build"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "problemMatcher": [],
-      "options": {
-        "env": {
-          "PATH": "C:\\msys64\\mingw64\\bin;${env:PATH}"
-        }
-      }
+      "presentation": {
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared"
+      },
+      "detail": "Pre-launch task for cleaning and setting up the build environment using PowerShell."
     }
   ]
 }
