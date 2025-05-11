@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="mes-monitor">
+	<schema id="de.csbme.MES_SystemMonitor" path="/de/csbme/MES_SystemMonitor/">
+	</schema>
+</schemalist>

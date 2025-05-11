@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=mes-monitor
+Exec=mes-monitor
+Icon=de.csbme.MES_SystemMonitor
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=GTK;
+StartupNotify=true
+DBusActivatable=true

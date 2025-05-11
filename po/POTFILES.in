@@ -1,0 +1,8 @@
+# List of source files containing translatable strings.
+# Please keep this file sorted alphabetically.
+data/de.csbme.MES_SystemMonitor.desktop.in
+data/de.csbme.MES_SystemMonitor.metainfo.xml.in
+data/de.csbme.MES_SystemMonitor.gschema.xml
+src/main.py
+src/window.py
+src/window.ui

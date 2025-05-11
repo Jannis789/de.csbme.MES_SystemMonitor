@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "Meson Cleanup and Setup/Install",
+        "type": "shell",
+        "command": "ninja -C _build uninstall && rm -rf _build target && meson setup _build --prefix=\"$(pwd)/target\" && meson install -C _build",
+        "problemMatcher": []
+      }
+    ]
+  }

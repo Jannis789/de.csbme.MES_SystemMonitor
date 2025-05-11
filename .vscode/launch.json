@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Meson Build & Install",
+        "type": "debugpy",
+        "request": "launch",
+        "program": "${workspaceFolder}/target/bin/mes-monitor",
+        "args": [],
+        "cwd": "${workspaceFolder}",
+        "preLaunchTask": "Meson Cleanup and Setup/Install",
+      }
+    ]
+  }

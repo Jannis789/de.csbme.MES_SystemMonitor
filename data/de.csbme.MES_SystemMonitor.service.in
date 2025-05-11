@@ -1,0 +1,3 @@
+[D-BUS Service]
+Name=de.csbme.MES_SystemMonitor
+Exec=@bindir@/mes-monitor --gapplication-service
