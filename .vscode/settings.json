@@ -29,4 +29,7 @@
             "icon": "terminal-powershell"
         }
     },
+    "mesonbuild.configureOnOpen": true,
+    "C_Cpp.default.compileCommands": "/home/jannis/Projects/de.csbme.MES_SystemMonitor/builddir/compile_commands.json",
+    "C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild",
 }
