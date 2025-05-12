@@ -6,7 +6,7 @@ gi.require_version('Gtk', '4.0')
 gi.require_version('Adw', '1')
 
 from gi.repository import Gtk, Gio, Adw
-from .window import MesMonitorWindow
+from .controller.window import MesMonitorWindow
 
 
 class MesMonitorApplication(Adw.Application):
