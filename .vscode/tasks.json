@@ -4,7 +4,7 @@
     {
       "label": "Meson Cleanup and Setup/Install (Nix-Shell)",
       "type": "shell",
-      "command": "if [ -d \"_build\" ]; then ninja -C _build uninstall && rm -rf _build target; fi && meson setup _build --prefix=\"$(pwd)/target\" && meson install -C _build",
+      "command": "if [ -d \"_build\" ]; then ninja -C _build uninstall && rm -rf _build _target; fi && meson setup _build --prefix=\"$(pwd)/_target\" && meson install -C _build",
       "problemMatcher": [],
       "presentation": {
         "reveal": "silent",
@@ -24,7 +24,7 @@
       "command": "powershell",
       "args": [
         "-Command",
-        "if (Test-Path \"_build\") { Remove-Item -Recurse -Force \"_build\" } ; if (Test-Path \"target\") { Remove-Item -Recurse -Force \"target\" } ; meson setup _build --prefix=\"$(pwd)\\target\" ; meson install -C _build"
+        "if (Test-Path \"_build\") { Remove-Item -Recurse -Force \"_build\" } ; if (Test-Path \"_target\") { Remove-Item -Recurse -Force \"_target\" } ; meson setup _build --prefix=\"$(pwd)\\_target\" ; meson install -C _build"
       ],
       "group": {
         "kind": "build",

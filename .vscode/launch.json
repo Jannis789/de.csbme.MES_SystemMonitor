@@ -5,7 +5,7 @@
       "name": "Meson Build & Install & Debug",
       "type": "debugpy",
       "request": "launch",
-      "program": "${workspaceFolder}/target/bin/mes-monitor",
+      "program": "${workspaceFolder}/_target/bin/mes-monitor",
       "args": [],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "Meson Cleanup and Setup/Install (Nix-Shell)",
@@ -15,7 +15,7 @@
       "name": "Meson Build & Install & Debug (Windows - PowerShell)",
       "type": "debugpy",
       "request": "launch",
-      "program": "${workspaceFolder}\\target\\bin\\mes-monitor",
+      "program": "${workspaceFolder}\\_target\\bin\\mes-monitor",
       "args": [],
       "preLaunchTask": "Meson Cleanup and Setup/Install (Windows - PowerShell)",
       "console": "integratedTerminal"
