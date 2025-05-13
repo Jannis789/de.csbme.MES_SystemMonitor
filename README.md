@@ -47,4 +47,4 @@ curl -L https://nixos.org/nix/install | sh
 > 
 > 3.5 Füge C:\msys64\mingw64\bin; an den Anfang der bestehenden Liste hinzu.
 
-4. Starten des Programmes via Visual Studio Code Runner: Meson Build & Install & Debug (Nix-Shell)
+### 4. Starten des Programmes via Visual Studio Code Runner: Meson Build & Install & Debug (Nix-Shell)
