@@ -33,18 +33,18 @@ curl -L https://nixos.org/nix/install | sh
 
 ### 3. Enviroment Variablen setzen
 
-    3.1. Drücke Win + X und wähle "System" aus.
+> 3.1. Drücke Win + X und wähle "System" aus.
+> 
+> 3.2 Klicke auf "Erweiterte Systemeinstellungen".
+> 
+> 3.3 Im Fenster "Systemeigenschaften" klickst du auf "Umgebungsvariablen...".
+> 
+> 3.4 In den Umgebungsvariablen kannst du entweder den PATH für den Benutzer oder für das gesamte System bearbeiten:
+> 
+> - Um den PATH für den aktuellen Benutzer zu ändern, bearbeite die Variable unter „Benutzervariablen“.
+> 
+> - Um den PATH systemweit zu ändern, bearbeite die Variable unter „Systemvariablen“.
+> 
+> 3.5 Füge C:\msys64\mingw64\bin; an den Anfang der bestehenden Liste hinzu.
 
-    3.2 Klicke auf "Erweiterte Systemeinstellungen".
-
-    3.3 Im Fenster "Systemeigenschaften" klickst du auf "Umgebungsvariablen...".
-
-    3.4 In den Umgebungsvariablen kannst du entweder den PATH für den Benutzer oder für das gesamte System bearbeiten:
-
-    - Um den PATH für den aktuellen Benutzer zu ändern, bearbeite die Variable unter „Benutzervariablen“.
-
-    - Um den PATH systemweit zu ändern, bearbeite die Variable unter „Systemvariablen“.
-
-    3.5 Füge C:\msys64\mingw64\bin; an den Anfang der bestehenden Liste hinzu.
-
-4. Starten des Programmes via Visual Studio Code Runner: `Meson Build & Install & Debug (Nix-Shell)`
+4. Starten des Programmes via Visual Studio Code Runner: Meson Build & Install & Debug (Nix-Shell)
