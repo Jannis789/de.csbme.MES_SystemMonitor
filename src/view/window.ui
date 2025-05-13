@@ -42,7 +42,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkScrolledWindow">
+              <object class="GtkScrolledWindow" id="scrolled_window">
                 <property name="vexpand">True</property>
                 <property name="hexpand">True</property>
                 <child>
@@ -53,6 +53,9 @@
                     <property name="margin-end">10</property>
                     <property name="show-column-separators">true</property>
                     <property name="show-row-separators">true</property>
+                    <style>
+                      <class name="ColumnView"/>
+                    </style>
                   </object>
                 </child>
               </object>
