@@ -21,13 +21,45 @@
           </object>
         </child>
         <property name="content">
-          <object class="GtkLabel" id="label">
-            <property name="label" translatable="yes">Hello, World!</property>
+          <object class="GtkBox" id="wrapper_box">
+            <property name="orientation">vertical</property>
+            <property name="spacing">10</property>
+            <property name="margin-start">15</property>
+            <property name="margin-end">15</property>
+            <property name="margin-top">5</property>
+            <property name="margin-bottom">15</property>
             <style>
-              <class name="title-1"/>
+              <class name="card"/>
             </style>
+            <child>
+              <object class="GtkLabel" id="label">
+                <property name="valign">start</property>
+                <property name="margin-top">10</property>
+                <property name="label" translatable="yes">Produktionslinien</property>
+                <style>
+                  <class name="title-1"/>
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkScrolledWindow">
+                <property name="vexpand">True</property>
+                <property name="hexpand">True</property>
+                <child>
+                  <object class="GtkColumnView" id="column_view">
+                    <property name="margin-top">10</property>
+                    <property name="margin-bottom">10</property>
+                    <property name="margin-start">10</property>
+                    <property name="margin-end">10</property>
+                    <property name="show-column-separators">true</property>
+                    <property name="show-row-separators">true</property>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </property>
+
       </object>
     </property>
   </template>

@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Meson Build & Install & Debug",
+      "name": "Meson Build & Install & Debug (Nix-Shell)",
       "type": "debugpy",
       "request": "launch",
       "program": "${workspaceFolder}/_target/bin/mes-monitor",
@@ -14,6 +14,7 @@
     {
       "name": "Meson Build & Install & Debug (Windows - PowerShell)",
       "type": "debugpy",
+      "python": "C:\\msys64\\mingw64\\bin\\python",
       "request": "launch",
       "program": "${workspaceFolder}\\_target\\bin\\mes-monitor",
       "args": [],

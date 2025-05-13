@@ -17,6 +17,9 @@ pkgs.mkShell {
     pkgs.meson
     pkgs.desktop-file-utils
     pkgs.cmake
+    pkgs.pkg-config
+    pkgs.appstream
+    pkgs.python3Packages.pygobject-stubs
   ];
 
   # Ensure that the GI_TYPELIB_PATH and PYTHONPATH are set correctly
@@ -28,6 +31,10 @@ ${pkgs.pango.out}/lib/girepository-1.0:\
 ${pkgs.cairo.out}/lib/girepository-1.0:\
 ${pkgs.harfbuzz.out}/lib/girepository-1.0:\
 ${pkgs.gdk-pixbuf.out}/lib/girepository-1.0:\
-${pkgs.libadwaita.out}/lib/girepository-1.0
+${pkgs.libadwaita.out}/lib/girepository-1.0:\
+${pkgs.gobject-introspection.out}/lib/girepository-1.0
+
+    export PYTHONPATH=${pkgs.python3Packages.pygobject3}/lib/python3.9/site-packages:\
+${pkgs.python3Packages.pygobject-stubs}/lib/python3.9/site-packages:$PYTHONPATH
   '';
 }
