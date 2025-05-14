@@ -54,7 +54,7 @@ class ProduktionslinienController:
             if label is not None:
                 label.set_text(item.name)
 
-    def _on_column_view_column_pressed(self, gesture: Gtk.GestureClick, n_press, x, y, column: Gtk.ColumnViewColumn):
+    def _on_column_view_column_pressed(self, _gesture: Gtk.GestureClick, n_press, _x, _y, column: Gtk.ColumnViewColumn):
         if n_press % 2 == 0:
             # Force behavior by handling title as unique identifier
             print(f"Double-click detected on column: {column.get_title()}")
