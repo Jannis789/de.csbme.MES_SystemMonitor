@@ -18,6 +18,8 @@ class MesMonitorWindow(Adw.ApplicationWindow):
     column_view: Gtk.ColumnView = Gtk.Template.Child()
     scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
     add_button: Gtk.Button = Gtk.Template.Child()
+    root_page: Adw.NavigationPage = Gtk.Template.Child()
+    detail_page: Adw.NavigationPage = Gtk.Template.Child()
 
 
     def __init__(self, **kwargs):

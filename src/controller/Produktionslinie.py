@@ -23,12 +23,12 @@ class ProduktionslinienController:
         self.column_view.set_model(Gtk.SingleSelection(model=produktionslinien))
 
         factory = Gtk.SignalListItemFactory()
-        factory.connect("setup", self._on_factory_setup)
-        factory.connect("bind", self._on_factory_bind)
 
         column = Gtk.ColumnViewColumn(title="Name", factory=factory)
         column.set_expand(True)
         column.set_resizable(True)
+        factory.connect("setup", self._on_factory_setup, column)
+        factory.connect("bind", self._on_factory_bind)
         self.column_view.append_column(column)
 
     def add_column(self, plm: 'ProduktionslinienModell'):
@@ -36,13 +36,13 @@ class ProduktionslinienController:
         if self.model is not None:
             self.model.append(plm)
 
-    def _on_factory_setup(self, factory, list_item):
+    def _on_factory_setup(self, factory, list_item, column):
         box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         label = Gtk.Label()
         label.set_halign(Gtk.Align.START)
         box.append(label)
         gesture = Gtk.GestureClick.new()
-        gesture.connect("pressed", self._on_column_view_column_pressed)
+        gesture.connect("pressed", self._on_column_view_column_pressed, column)
         box.add_controller(gesture)
         list_item.set_child(box)
 
@@ -54,8 +54,10 @@ class ProduktionslinienController:
             if label is not None:
                 label.set_text(item.name)
 
-    def _on_column_view_column_pressed(self, gesture, n_press, x, y):
-        print("Column view item pressed")
+    def _on_column_view_column_pressed(self, gesture: Gtk.GestureClick, n_press, x, y, column: Gtk.ColumnViewColumn):
+        if n_press % 2 == 0:
+            # Force behavior by handling title as unique identifier
+            print(f"Double-click detected on column: {column.get_title()}")
 
 
 class ProduktionslinienModell(GObject.Object):

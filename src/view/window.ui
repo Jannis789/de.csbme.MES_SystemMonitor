@@ -4,13 +4,13 @@
   <requires lib="Adw" version="1.0" />
   <template class="MesMonitorWindow" parent="AdwApplicationWindow">
     <property name="title" translatable="yes">MES-Monitor</property>
-    <property name="default-width">800</property>
-    <property name="default-height">600</property>
+    <property name="default-width">600</property>
+    <property name="default-height">480</property>
     <property name="content">
       <object class="AdwNavigationView">
         <child>
-          <object class="AdwNavigationPage">
-            <property name="child">
+          <object class="AdwNavigationPage" id="root_page">
+            <child>
               <object class="AdwToolbarView">
                 <child type="top">
                   <object class="AdwHeaderBar">
@@ -24,14 +24,14 @@
                     </child>
                   </object>
                 </child>
-                <property name="content">
+                <child>
+
                   <object class="GtkBox" id="wrapper_box">
                     <property name="orientation">vertical</property>
                     <property name="spacing">10</property>
-                    <property name="margin-start">15</property>
-                    <property name="margin-end">15</property>
-                    <property name="margin-top">5</property>
-                    <property name="margin-bottom">15</property>
+                    <property name="margin-bottom">20</property>
+                    <property name="margin-start">20</property>
+                    <property name="margin-end">20</property>
                     <style>
                       <class name="card" />
                     </style>
@@ -39,6 +39,7 @@
                       <object class="GtkLabel" id="label">
                         <property name="valign">start</property>
                         <property name="margin-top">15</property>
+                        <property name="margin-bottom">5</property>
                         <property name="label" translatable="yes">Produktionslinien</property>
                         <style>
                           <class name="title-2" />
@@ -51,8 +52,6 @@
                         <property name="hexpand">True</property>
                         <child>
                           <object class="GtkColumnView" id="column_view">
-                            <property name="margin-top">5</property>
-                            <property name="margin-bottom">5</property>
                             <property name="margin-start">10</property>
                             <property name="margin-end">10</property>
                             <property name="show-column-separators">true</property>
@@ -77,13 +76,13 @@
                       </object>
                     </child>
                   </object>
-                </property>
+                </child>
               </object>
-            </property>
+            </child>
           </object>
         </child>
         <child>
-          <object class="AdwNavigationPage">
+          <object class="AdwNavigationPage" id="detail_page">
             <property name="title" translatable="yes">Weitere Seite</property>
             <property name="tag">page-2</property>
             <!-- Hier kannst du weiteren Inhalt für die zweite Seite einfügen -->
