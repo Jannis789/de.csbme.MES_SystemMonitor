@@ -1,4 +1,3 @@
-
 from gi.repository import Adw
 from gi.repository import Gtk
 from gi.repository import Gio
@@ -10,7 +9,7 @@ from .Produktionslinie import ProduktionslinienController, ProduktionslinienMode
 _COLUMN_VIEW_OVERRIDE = """
 .ColumnView > header {
   font-size: 18px;
-  font-weight: 900;
+  font-weight: 400;
 }"""
 
 
@@ -36,18 +35,16 @@ class MesMonitorWindow(Adw.ApplicationWindow):
     
         """create Dummy data for the column view"""
         data_model = Gio.ListStore(item_type=ProduktionslinienModell)
-        for line in [
-            ProduktionslinienModell(name="Produktionslinie 1"),
-            ProduktionslinienModell(name="Produktionslinie 2"),
-            ProduktionslinienModell(name="Produktionslinie 3"),
-        ]:
+        # @TODO: fetch from db
+        for line in []:
             data_model.append(line)
             
         self.produktionslinien_controller.fill_column_view(data_model)
 
-    def on_add_button_clicked(self, button):
+    def on_add_button_clicked(self, _button):
         """Add a new Produktionslinie to the column view"""
-        print("Add button clicked")
+        dialog = NewProduktionslinieDialog()
+        dialog.present(self)
         
     def load_css(self):
         style = self.get_style_context()
@@ -59,3 +56,20 @@ class MesMonitorWindow(Adw.ApplicationWindow):
             provider.load_from_data(bytes(_COLUMN_VIEW_OVERRIDE.encode()))
         display = Gdk.Display.get_default()
         style.add_provider_for_display(display, provider, priority)
+
+@Gtk.Template(resource_path='/de/csbme/MES_SystemMonitor/view/new-produktionslinie.ui')
+class NewProduktionslinieDialog(Adw.Dialog):
+    __gtype_name__ = 'DialogPopUp'
+
+    entry: Gtk.Entry = Gtk.Template.Child()
+    add_button: Gtk.Button = Gtk.Template.Child()
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.add_button.connect('clicked', self.on_add_button_clicked)
+
+    def on_add_button_clicked(self, _button):
+        text = self.entry.get_text()
+        plm = ProduktionslinienModell(name=text)
+        ProduktionslinienController().add_column(plm)
+        self.close()

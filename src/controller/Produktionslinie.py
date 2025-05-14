@@ -3,22 +3,38 @@ from gi.repository import GObject
 
 
 class ProduktionslinienController:
-    def __init__(self, column_view: Gtk.ColumnView):
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(ProduktionslinienController, cls).__new__(cls)
+            cls._instance._initialized = False
+        return cls._instance
+
+    def __init__(self, column_view: Gtk.ColumnView = None):
+        if self._initialized:
+            return
         self.column_view = column_view
+        self.model = None  # Store the ListStore model
+        self._initialized = True
 
     def fill_column_view(self, produktionslinien: Gio.ListStore):
-
+        self.model = produktionslinien  # Save reference to model
         self.column_view.set_model(Gtk.SingleSelection(model=produktionslinien))
 
         factory = Gtk.SignalListItemFactory()
         factory.connect("setup", self._on_factory_setup)
         factory.connect("bind", self._on_factory_bind)
 
-        """ Maybe someday we need to solve this with a dynamic Class generation"""
         column = Gtk.ColumnViewColumn(title="Name", factory=factory)
         column.set_expand(True)
         column.set_resizable(True)
         self.column_view.append_column(column)
+
+    def add_column(self, plm: 'ProduktionslinienModell'):
+        # Add a new row/item to the model instead of a column
+        if self.model is not None:
+            self.model.append(plm)
 
     def _on_factory_setup(self, factory, list_item):
         box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
@@ -31,7 +47,6 @@ class ProduktionslinienController:
         list_item.set_child(box)
 
     def _on_factory_bind(self, factory, list_item):
-        # Bind the label to the item's name property
         item = list_item.get_item()
         box = list_item.get_child()
         if box is not None:
