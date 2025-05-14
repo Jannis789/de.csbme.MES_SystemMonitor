@@ -1,17 +1,16 @@
-from gi.repository import Adw
-from gi.repository import Gtk
-from gi.repository import Gio
-from gi.repository import Gdk
+from gi.repository import Adw, Gtk, Gio, Gdk
 
 from .Produktionslinie import ProduktionslinienController, ProduktionslinienModell
 
-
-_COLUMN_VIEW_OVERRIDE = """
+_CSS = """
 .ColumnView > header {
   font-size: 18px;
   font-weight: 400;
-}"""
-
+}
+* {
+    font-family: "Adwaita Mono Nerd Font";
+}
+"""
 
 @Gtk.Template(resource_path='/de/csbme/MES_SystemMonitor/view/window.ui')
 class MesMonitorWindow(Adw.ApplicationWindow):
@@ -24,7 +23,6 @@ class MesMonitorWindow(Adw.ApplicationWindow):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
-        self.add_button.add_controller(Gtk.GestureClick.new())
         self.add_button.connect('clicked', self.on_add_button_clicked)
 
         self.instanciate_column_view()
@@ -51,9 +49,9 @@ class MesMonitorWindow(Adw.ApplicationWindow):
         priority = Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
         provider = Gtk.CssProvider()
         try:
-            provider.load_from_data(_COLUMN_VIEW_OVERRIDE, -1)
+            provider.load_from_data(_CSS, -1)
         except Exception:
-            provider.load_from_data(bytes(_COLUMN_VIEW_OVERRIDE.encode()))
+            provider.load_from_data(bytes(_CSS.encode()))
         display = Gdk.Display.get_default()
         style.add_provider_for_display(display, provider, priority)
 

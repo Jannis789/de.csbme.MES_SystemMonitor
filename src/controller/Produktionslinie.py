@@ -61,8 +61,8 @@ class ProduktionslinienController:
 class ProduktionslinienModell(GObject.Object):
     def __init__(self, name: str):
         super().__init__()
-        self._name = name  # Initialize the name property
-
+        self._name = name  
+    
     @GObject.Property(type=str)
     def name(self):
         return self._name
