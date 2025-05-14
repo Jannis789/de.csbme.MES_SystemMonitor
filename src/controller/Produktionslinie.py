@@ -21,16 +21,26 @@ class ProduktionslinienController:
         self.column_view.append_column(column)
 
     def _on_factory_setup(self, factory, list_item):
+        box = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL)
         label = Gtk.Label()
         label.set_halign(Gtk.Align.START)
-        # label.add_css_class("title-2")
-        list_item.set_child(label)
+        box.append(label)
+        gesture = Gtk.GestureClick.new()
+        gesture.connect("pressed", self._on_column_view_column_pressed)
+        box.add_controller(gesture)
+        list_item.set_child(box)
 
     def _on_factory_bind(self, factory, list_item):
         # Bind the label to the item's name property
         item = list_item.get_item()
-        list_item.get_child().set_text(item.name)
-            
+        box = list_item.get_child()
+        if box is not None:
+            label = box.get_first_child()
+            if label is not None:
+                label.set_text(item.name)
+
+    def _on_column_view_column_pressed(self, gesture, n_press, x, y):
+        print("Column view item pressed")
 
 
 class ProduktionslinienModell(GObject.Object):

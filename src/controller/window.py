@@ -17,12 +17,17 @@ _COLUMN_VIEW_OVERRIDE = """
 @Gtk.Template(resource_path='/de/csbme/MES_SystemMonitor/view/window.ui')
 class MesMonitorWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'MesMonitorWindow'
-    column_view = Gtk.Template.Child()
-    scrolled_window = Gtk.Template.Child()
+    column_view: Gtk.ColumnView = Gtk.Template.Child()
+    scrolled_window: Gtk.ScrolledWindow = Gtk.Template.Child()
+    add_button: Gtk.Button = Gtk.Template.Child()
 
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
+        self.add_button.add_controller(Gtk.GestureClick.new())
+        self.add_button.connect('clicked', self.on_add_button_clicked)
+
         self.instanciate_column_view()
         self.load_css()
     
@@ -39,6 +44,10 @@ class MesMonitorWindow(Adw.ApplicationWindow):
             data_model.append(line)
             
         self.produktionslinien_controller.fill_column_view(data_model)
+
+    def on_add_button_clicked(self, button):
+        """Add a new Produktionslinie to the column view"""
+        print("Add button clicked")
         
     def load_css(self):
         style = self.get_style_context()
