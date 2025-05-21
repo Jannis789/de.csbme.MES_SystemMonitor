@@ -7,7 +7,7 @@ class ProductionLinesOverlay(Adw.NavigationPage):
     __gtype_name__ = 'ProductionLinesOverlay'
     
     __gsignals__ = {
-        "open-new-product-line-dialog": (GObject.SIGNAL_RUN_FIRST, None, ()),
+        "open-new-production-line-dialog": (GObject.SIGNAL_RUN_FIRST, None, ()),
         "open-production-line": (GObject.SIGNAL_RUN_FIRST, None, (Gtk.ColumnView, int, ProductionLineModel)),
     }
     
@@ -20,7 +20,7 @@ class ProductionLinesOverlay(Adw.NavigationPage):
         super().__init__(**kwargs)
         self._construct_factory()
         self.column_view.connect("activate", self._on_column_activate)
-        self.add_button.connect("clicked", lambda button: self.emit("open-new-product-line-dialog"))
+        self.add_button.connect("clicked", lambda button: self.emit("open-new-production-line-dialog"))
         
     def _construct_factory(self):
         """Initializes the data model and sets up the column view with its columns and cell factories."""
@@ -55,5 +55,5 @@ class ProductionLinesOverlay(Adw.NavigationPage):
         label.set_text(item.name)
 
     def _on_column_activate(self, view, index):
-        item = self.controller.model.get_item(index)
+        item = self.store.get_item(index)
         self.emit("open-production-line", view, index, item)

@@ -4,6 +4,8 @@
     <file preprocess="xml-stripblanks">view/window.ui</file>
     <file preprocess="xml-stripblanks">view/help-overlay.ui</file>
     <file preprocess="xml-stripblanks">view/production-lines-overlay.ui</file>
-    <file preprocess="xml-stripblanks">view/add-product-line-dialog.ui</file>
+    <file preprocess="xml-stripblanks">view/add-production-line-dialog.ui</file>
+    <file preprocess="xml-stripblanks">view/production-line-details.ui</file>
+    <file preprocess="xml-stripblanks">view/add-production-order-page.ui</file>
   </gresource>
 </gresources>

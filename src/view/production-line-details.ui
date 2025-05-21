@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <template class="ProductionLineDetails" parent="AdwNavigationPage">
+        <property name="tag">production-line-details</property>
+        <property name="title">Produktionslinienübersicht</property>
+        <child>
+            <object class="AdwToolbarView">
+                <child type="top">
+                    <object class="AdwHeaderBar">
+                        <property name="title-widget">
+                            <object class="GtkLabel" id="headerbar_title_label">
+                                <property name="valign">start</property>
+                                <property name="margin-top">15</property>
+                                <property name="margin-bottom">5</property>
+                                <property name="label" translatable="yes">Produktionslinie: </property>
+                                <style>
+                                    <class name="title-4" />
+                                </style>
+                            </object>
+                        </property>
+                    </object>
+                </child>
+                <child>
+                    <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">10</property>
+                        <property name="margin-bottom">20</property>
+                        <property name="margin-start">20</property>
+                        <property name="margin-end">20</property>
+                        <style>
+                            <class name="card" />
+                        </style>
+                        <child>
+                            <object class="GtkScrolledWindow">
+                                <property name="vexpand">True</property>
+                                <property name="hexpand">True</property>
+                                <child>
+                                    <object class="GtkColumnView" id="column_view">
+                                        <property name="margin-start">10</property>
+                                        <property name="margin-end">10</property>
+                                        <property name="margin-top">10</property>
+                                        <property name="show-column-separators">true</property>
+                                        <property name="show-row-separators">true</property>
+                                        <style>
+                                            <class name="card" />
+                                        </style>
+                                    </object>
+                                </child>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkButton" id="add_button">
+                                <property name="label">Produktionsauftrag hinzufügen</property>
+                                <property name="margin-start">10</property>
+                                <property name="margin-end">10</property>
+                                <property name="margin-bottom">10</property>
+                                <style>
+                                    <class name="primary" />
+                                </style>
+                            </object>
+                        </child>
+                    </object>
+                </child>
+            </object>
+        </child>
+    </template>
+</interface>

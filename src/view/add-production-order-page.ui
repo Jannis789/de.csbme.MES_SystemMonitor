@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+TODO:
+- Add a header bar with a title called "Produktionsauftrag"
+- Add fields for the following Entity "Produktionsauftrag" (use AdwEntryRow):
+  - Name
+  - Auftragsnummer
+  - Produzierte Einheiten
+  - Status
+  - Effizienz
+-->
+<interface>
+  <template class="AddProductionOrderPage" parent="AdwNavigationPage">
+    <property name="tag">add-production-order-page</property>
+    <property name="title">Produktionsauftrag</property>
+    <child>
+      <object class="AdwToolbarView">
+        <child type="top">
+          <object class="AdwHeaderBar">
+            <property name="title-widget">
+              <object class="GtkLabel">
+                <property name="valign">start</property>
+                <property name="margin-top">15</property>
+                <property name="margin-bottom">5</property>
+                <property name="label" translatable="yes">Produktionsauftrag</property>
+                <style>
+                  <class name="title-4" />
+                </style>
+              </object>
+            </property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">10</property>
+            <property name="margin-bottom">20</property>
+            <property name="margin-start">20</property>
+            <property name="margin-end">20</property>
+            <style>
+              <class name="card" />
+            </style>
+            <child>
+              <object class="GtkBox">
+                <property name="orientation">vertical</property>
+                <property name="spacing">8</property>
+                <child>
+                  <object class="AdwEntryRow" id="name_entry">
+                    <property name="title" translatable="yes">Name</property>
+                    <property name="show-apply-button">false</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwEntryRow" id="order_number_entry">
+                    <property name="title" translatable="yes">Auftragsnummer</property>
+                    <property name="show-apply-button">false</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="AdwEntryRow" id="unit_entry">
+                    <property name="title" translatable="yes">Einheiten</property>
+                    <property name="show-apply-button">false</property>
+                  </object>
+                </child>
+                <child>
+                    <object class="AdwActionRow" id="status_row">
+                    <property name="title" translatable="yes">Status</property>
+                    <property name="subtitle" translatable="yes">Initial</property> <!-- Initialwert -->
+                    </object>
+                </child>
+                <child>
+                    <object class="AdwActionRow" id="produced_units_row">
+                    <property name="title" translatable="yes">Produzierte Einheiten</property>
+                    <property name="subtitle" translatable="yes">0 / 0</property> <!-- Initialwert -->
+                    </object>
+                </child>
+                <child>
+                    <object class="AdwActionRow" id="efficiency_row">
+                    <property name="title" translatable="yes">Effizienz</property>
+                    <property name="subtitle" translatable="yes">0 %</property> <!-- Initialwert -->
+                    </object>
+                </child>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="save_button">
+                <property name="label">Speichern</property>
+                <property name="margin-start">10</property>
+                <property name="margin-end">10</property>
+                <property name="margin-bottom">10</property>
+                <style>
+                  <class name="primary" />
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
