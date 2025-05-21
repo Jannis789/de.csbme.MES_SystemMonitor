@@ -5,6 +5,7 @@ from .ProductionLineDetails import ProductionLineDetails
 from .AddProductionLineDialog import AddProductionLineDialog
 from .AddProductionOrderPage import AddProductionOrderPage
 from ..model.ProductionLines import ProductionLineModel
+from ..model.ProductionOrder import ProductionOrderModel
 
 @Gtk.Template(resource_path='/de/csbme/MES_SystemMonitor/view/window.ui')
 class MesMonitorWindow(Adw.ApplicationWindow):
@@ -37,6 +38,7 @@ class MesMonitorWindow(Adw.ApplicationWindow):
         self.production_lines_overlay.connect("open-production-line", self._on_open_production_line)
         self.add_new_product_line_dialog.connect("add-production-line", self._on_add_production_line)
         self.production_lines_details.connect("open-production-order", self._on_open_production_order)
+        self.add_production_order_page.connect("add-production-order", self._on_add_production_order)
         
     def _open_new_product_line_dialog(self, _widget: ProductionLinesOverlay):
         """Open the new product line popup."""
@@ -56,7 +58,6 @@ class MesMonitorWindow(Adw.ApplicationWindow):
         
     def _on_open_production_order(self, _widget: ProductionLineDetails, item: ProductionLineModel, create_new: bool):
         self.navigation_view.push_by_tag(self.add_production_order_page.page_tag)
-        if create_new:
-            pass
-        else:
-            pass
+        
+    def _on_add_production_order(self, _widget: AddProductionOrderPage, item: ProductionOrderModel):
+        self.production_lines_details.current_item.production_orders.insert(0, item)

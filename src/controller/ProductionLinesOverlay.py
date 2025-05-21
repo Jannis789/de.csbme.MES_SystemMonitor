@@ -38,7 +38,6 @@ class ProductionLinesOverlay(Adw.NavigationPage):
         )
         
         self.column_view.append_column(column)
-        
 
     def _on_factory_setup(self, factory, list_item: Gtk.ColumnViewCell):
         """Set up the list item for the column view. Initial call"""

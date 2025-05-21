@@ -45,14 +45,14 @@ TODO:
                 <property name="orientation">vertical</property>
                 <property name="spacing">8</property>
                 <child>
-                  <object class="AdwEntryRow" id="name_entry">
-                    <property name="title" translatable="yes">Name</property>
+                  <object class="AdwEntryRow" id="order_number_entry">
+                    <property name="title" translatable="yes">Auftragsnummer</property>
                     <property name="show-apply-button">false</property>
                   </object>
                 </child>
                 <child>
-                  <object class="AdwEntryRow" id="order_number_entry">
-                    <property name="title" translatable="yes">Auftragsnummer</property>
+                  <object class="AdwEntryRow" id="name_entry">
+                    <property name="title" translatable="yes">Name</property>
                     <property name="show-apply-button">false</property>
                   </object>
                 </child>
