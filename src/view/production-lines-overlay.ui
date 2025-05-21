@@ -32,7 +32,7 @@
                 <property name="vexpand">True</property>
                 <property name="hexpand">True</property>
                 <child>
-                  <object class="GtkColumnView">
+                  <object class="GtkColumnView" id="column_view">
                     <property name="margin-start">10</property>
                     <property name="margin-end">10</property>
                     <property name="margin-top">10</property>
@@ -47,7 +47,7 @@
               </object>
             </child>
             <child>
-              <object class="GtkButton">
+              <object class="GtkButton" id="add_button">
                 <property name="label">Produktionslinie hinzufügen</property>
                 <property name="margin-start">10</property>
                 <property name="margin-end">10</property>

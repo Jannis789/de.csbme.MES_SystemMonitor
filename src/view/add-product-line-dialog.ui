@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+    <template class="AddProductionLineDialog" parent="AdwDialog">
+        <property name="title" translatable="yes">neue Produktionsline</property>
+        <property name="follows-content-size"></property>
+        <property name="child">
+            <object class="AdwToolbarView">
+                <child type="top">
+                    <object class="AdwHeaderBar"></object>
+                </child>
+                <property name="content">
+                    <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="spacing">10</property>
+                        <property name="margin-bottom">20</property>
+                        <property name="margin-start">20</property>
+                        <property name="margin-end">20</property>
+                        <child>
+                            <object class="GtkEntry" id="entry">
+                                <property name="width-chars">30</property>
+                                <property name="placeholder-text" translatable="yes">Bitte eingeben...</property>
+                            </object>
+                        </child>
+                        <child>
+                            <object class="GtkButton" id="add_button">
+                                <property name="label" translatable="yes">Hinzufügen</property>
+                                <property name="valign">end</property>
+                            </object>
+                        </child>
+                    </object>
+                </property>
+            </object>
+        </property>
+    </template>
+</interface>
