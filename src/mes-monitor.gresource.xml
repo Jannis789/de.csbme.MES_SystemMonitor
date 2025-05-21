@@ -3,5 +3,6 @@
   <gresource prefix="/de/csbme/MES_SystemMonitor">
     <file preprocess="xml-stripblanks">view/window.ui</file>
     <file preprocess="xml-stripblanks">view/help-overlay.ui</file>
+    <file preprocess="xml-stripblanks">view/production-lines-overlay.ui</file>
   </gresource>
 </gresources>

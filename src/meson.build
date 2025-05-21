@@ -29,9 +29,9 @@ configure_file(
 mes_monitor_sources = [
   '__init__.py',
   'main.py',
-  'controller/window.py',
 ]
 
 # Installiere den gesamten Ordner `controller`
 install_subdir('controller', install_dir: moduledir)
+install_subdir('model', install_dir: moduledir)
 install_data(mes_monitor_sources, install_dir: moduledir)

@@ -8,7 +8,6 @@ gi.require_version('Adw', '1')
 from gi.repository import Gtk, Gio, Adw
 from .controller.window import MesMonitorWindow
 
-
 class MesMonitorApplication(Adw.Application):
     """The main application singleton class."""
 
