@@ -1,35 +1,4 @@
 {
-    "python.locator": "js", // Essential for Python functionality due to a Windows-specific issue
-    "files.watcherExclude": {
-        "**/.git/objects/**": true,
-        "**/.git/subtree-cache/**": true,
-        "**/.hg/store/**": true,
-        ".flatpak/**": true,
-        "_build/**": true
-    },
-    "terminal.integrated.profiles.linux": {
-        "nix-shell": {
-            "path": "nix-shell"
-        }
-    },
-    "terminal.integrated.profiles.osx": {
-        "nix-shell": {
-            "path": "nix-shell"
-        }
-    },
-    "terminal.integrated.defaultProfile.linux": "nix-shell",
-    "terminal.integrated.defaultProfile.osx": "nix-shell",
-    "terminal.integrated.profiles.windows": {
-        "PowerShell": {
-            "path": [
-                "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-                "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
-            ],
-            "args": [],
-            "icon": "terminal-powershell"
-        }
-    },
-    "mesonbuild.configureOnOpen": true,
-    "C_Cpp.default.compileCommands": "/home/jannis/Projects/de.csbme.MES_SystemMonitor/builddir/compile_commands.json",
-    "C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild",
+    "C_Cpp.default.compileCommands": "/home/jannis/Dokumente/de.csbme.MES_SystemMonitor/builddir/compile_commands.json",
+    "C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild"
 }

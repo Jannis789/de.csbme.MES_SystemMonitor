@@ -1,4 +1,3 @@
-# This file is deprecated. Use flake.nix instead.
 { pkgs ? import <nixpkgs> {} }:
 
 pkgs.mkShell {
@@ -17,10 +16,13 @@ pkgs.mkShell {
     pkgs.meson
     pkgs.desktop-file-utils
     pkgs.cmake
+    pkgs.adwaita-icon-theme
   ];
 
-  # Ensure that the GI_TYPELIB_PATH and PYTHONPATH are set correctly
+  # Ensure that the GI_TYPELIB_PATH, adwaita-icons and PYTHONPATH are set correctly
   shellHook = ''
+    export XDG_DATA_DIRS=$HOME/.nix-profile/share:${pkgs.adwaita-icon-theme}/share:${pkgs.adwaita-icon-theme}/share
+    gtk4-update-icon-cache ${pkgs.adwaita-icon-theme}/share/icons/*
     export GI_TYPELIB_PATH=${pkgs.glib.out}/lib/girepository-1.0:\
 ${pkgs.gtk4.out}/lib/girepository-1.0:\
 ${pkgs.graphene.out}/lib/girepository-1.0:\
