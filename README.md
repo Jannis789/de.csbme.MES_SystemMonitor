@@ -67,7 +67,6 @@ Essentiell für Build-Prozesse (z. B. Meson, Ninja, CMake):
 
 Für GTK-Anwendungen und GNOME-Software:
 
-- `gtk+3`
 - `gtk4`
 - `gtksourceview5`
 - `gdk-pixbuf`
