@@ -1,4 +1,5 @@
 from gi.repository import Adw, Gtk, GObject, Gio
+from typing import Optional
 
 from ..model.ProductionLines import ProductionLineModel
 from ..model.ProductionOrder import ProductionOrderModel
@@ -7,7 +8,7 @@ from ..model.ProductionOrder import ProductionOrderModel
 class ProductionLineDetails(Adw.NavigationPage):
     __gtype_name__ = 'ProductionLineDetails'
     __gsignals__ = {
-        "open-production-order": (GObject.SIGNAL_RUN_FIRST, None, (ProductionLineModel, bool)),
+        "open-production-order": (GObject.SIGNAL_RUN_FIRST, None, (object, bool)),
     }
     
     page_tag: str = 'production-line-details'
@@ -89,4 +90,6 @@ class ProductionLineDetails(Adw.NavigationPage):
         label.set_text(item.name)
 
     def _on_column_activate(self, view, index):
-        self.emit("open-production-order", self.current_item, False)
+        selection = view.get_model()
+        item = selection.get_selected_item()
+        self.emit("open-production-order", item, False)

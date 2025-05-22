@@ -7,6 +7,8 @@ from .AddProductionOrderPage import AddProductionOrderPage
 from ..model.ProductionLines import ProductionLineModel
 from ..model.ProductionOrder import ProductionOrderModel
 
+from typing import Optional
+
 @Gtk.Template(resource_path='/de/csbme/MES_SystemMonitor/view/window.ui')
 class MesMonitorWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'MesMonitorWindow'
@@ -58,8 +60,12 @@ class MesMonitorWindow(Adw.ApplicationWindow):
         self.production_lines_details.set_page_title(item.name)
         self.production_lines_details.open_with(item)
         
-    def _on_open_production_order(self, _widget: ProductionLineDetails, item: ProductionLineModel, create_new: bool):
+    def _on_open_production_order(self, _widget: ProductionLineDetails, item, create_new: bool):
         self.navigation_view.push_by_tag(self.add_production_order_page.page_tag)
+        if not create_new:
+            self.add_production_order_page.fill_content(item)
+        else:
+            self.add_production_order_page.fill_content(None)
 
     def _on_add_production_order(self, _widget: AddProductionOrderPage, item: ProductionOrderModel):
         self.production_lines_details.current_item.production_orders.insert(0, item)

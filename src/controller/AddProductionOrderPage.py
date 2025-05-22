@@ -72,3 +72,22 @@ class AddProductionOrderPage(Adw.NavigationPage):
             units=units
         )
         self.emit("add-production-order", order)
+
+    def fill_content(self, order: ProductionOrderModel):
+        """Füllt die Eingabefelder mit den Daten eines bestehenden Produktionsauftrags."""
+        if order is None:
+            # Felder leeren, falls kein Auftrag übergeben wurde
+            self.order_number_entry.set_text("")
+            self.name_entry.set_text("")
+            self.unit_entry.set_text("")
+            self.status_row.set_subtitle("Initial")
+            self.produced_units_row.set_subtitle("0 / 0")
+            self.efficiency_row.set_subtitle("0 %")
+            return
+
+        self.order_number_entry.set_text(str(order.order_number))
+        self.name_entry.set_text(str(order.name))
+        self.unit_entry.set_text(str(order.units))
+        self.status_row.set_subtitle(str(order.status))
+        self.produced_units_row.set_subtitle(f"{order.produced_units} / {order.units}")
+        self.efficiency_row.set_subtitle(f"{order.efficiency:.0f} %")
