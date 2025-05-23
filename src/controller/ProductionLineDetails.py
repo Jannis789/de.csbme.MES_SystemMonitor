@@ -65,8 +65,8 @@ class ProductionLineDetails(Adw.NavigationPage):
 
         columns = [
             ("Auftragsname", "name", True),
-            ("Auftragsnummer", "order_number", False),
-            ("Einheiten", "units", False),
+            ("Auftragsnummer", "order_number", True),
+            ("Einheiten", "units", True),
         ]
         for title, attr, expand in columns:
             factory = make_factory(attr)

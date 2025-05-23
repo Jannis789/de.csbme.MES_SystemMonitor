@@ -68,4 +68,9 @@ class MesMonitorWindow(Adw.ApplicationWindow):
             self.add_production_order_page.fill_content(None)
 
     def _on_add_production_order(self, _widget: AddProductionOrderPage, item: ProductionOrderModel):
-        self.production_lines_details.current_item.production_orders.insert(0, item)
+        current_item = self.production_lines_details.current_item
+        if item not in current_item.production_orders:
+            current_item.production_orders.insert(0, item)
+        self.production_lines_details.set_page_title(current_item.name)
+        self.production_lines_details.open_with(current_item)
+        self.navigation_view.pop()

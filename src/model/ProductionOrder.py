@@ -24,23 +24,53 @@ class ProductionOrderModel(GObject.Object):
     @GObject.Property(type=str)
     def name(self):
         return self._name
-    
+
+    @name.setter
+    def name(self, value):
+        self._name = value
+        self.notify("name")
+
     @GObject.Property(type=str)
     def order_number(self):
         return self._order_number
-    
+
+    @order_number.setter
+    def order_number(self, value):
+        self._order_number = value
+        self.notify("order_number")
+
     @GObject.Property(type=int)
     def units(self):
         return self._units
-    
+
+    @units.setter
+    def units(self, value):
+        self._units = value
+        self.notify("units")
+
     @GObject.Property(type=int)
     def produced_units(self):
         return self._produced_units
-    
+
+    @produced_units.setter
+    def produced_units(self, value):
+        self._produced_units = value
+        self.notify("produced_units")
+
     @GObject.Property(type=str)
     def status(self):
         return self._status
-    
+
+    @status.setter
+    def status(self, value):
+        self._status = value
+        self.notify("status")
+
     @GObject.Property(type=float)
     def efficiency(self):
         return self._efficiency
+
+    @efficiency.setter
+    def efficiency(self, value):
+        self._efficiency = value
+        self.notify("efficiency")
