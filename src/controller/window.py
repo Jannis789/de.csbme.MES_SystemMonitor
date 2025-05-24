@@ -7,8 +7,6 @@ from .AddProductionOrderPage import AddProductionOrderPage
 from ..model.ProductionLines import ProductionLineModel
 from ..model.ProductionOrder import ProductionOrderModel
 
-from typing import Optional
-
 @Gtk.Template(resource_path='/de/csbme/MES_SystemMonitor/view/window.ui')
 class MesMonitorWindow(Adw.ApplicationWindow):
     __gtype_name__ = 'MesMonitorWindow'
@@ -37,12 +35,14 @@ class MesMonitorWindow(Adw.ApplicationWindow):
         # ================= Connect Signals ================= #
         
         self.production_lines_overlay.connect("open-new-production-line-dialog", self._open_new_product_line_dialog)
-        
         self.production_lines_overlay.connect("open-production-line", self._on_open_production_line)
+
         self.add_new_product_line_dialog.connect("add-production-line", self._on_add_production_line)
         
         self.production_lines_details.connect("open-production-order", self._on_open_production_order)
+
         self.add_production_order_page.connect("add-production-order", self._on_add_production_order)
+        self.add_production_order_page.connect("remove-production-order", self._on_remove_production_order)
         
     def _open_new_product_line_dialog(self, _widget: ProductionLinesOverlay):
         """Open the new product line popup."""
@@ -70,7 +70,18 @@ class MesMonitorWindow(Adw.ApplicationWindow):
     def _on_add_production_order(self, _widget: AddProductionOrderPage, item: ProductionOrderModel):
         current_item = self.production_lines_details.current_item
         if item not in current_item.production_orders:
-            current_item.production_orders.insert(0, item)
+            current_item.production_orders.append(item)
         self.production_lines_details.set_page_title(current_item.name)
+        self.production_lines_details.open_with(current_item)
+        self.navigation_view.pop()
+    
+
+    def _on_remove_production_order(self, _, item: ProductionOrderModel):
+        current_item = self.production_lines_details.current_item
+        model = current_item.production_orders
+        found, position = model.find(item)
+        if found:
+            model.remove(position)
+
         self.production_lines_details.open_with(current_item)
         self.navigation_view.pop()

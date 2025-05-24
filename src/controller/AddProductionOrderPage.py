@@ -7,6 +7,7 @@ class AddProductionOrderPage(Adw.NavigationPage):
     __gtype_name__ = 'AddProductionOrderPage'
     __gsignals__ = {
         "add-production-order": (GObject.SIGNAL_RUN_FIRST, None, (ProductionOrderModel,)),
+        "remove-production-order": (GObject.SIGNAL_RUN_FIRST, None, (ProductionOrderModel,)),
     }
     
     page_tag: str = 'add-production-order-page'
@@ -25,11 +26,14 @@ class AddProductionOrderPage(Adw.NavigationPage):
     status_row: Adw.ActionRow = Gtk.Template.Child()
     produced_units_row: Adw.ActionRow = Gtk.Template.Child()
     efficiency_row: Adw.ActionRow = Gtk.Template.Child()
+
+    delete_button: Gtk.Button = Gtk.Template.Child()
         
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
        
         self.save_button.connect("clicked", self._on_save_button_clicked)
+        self.delete_button.connect("clicked", self._on_delete_button_clicked)  # <-- hinzugefügt
         self.editable = False # only initially
         self._current_item_name = None
         self._current_item_order_number = None
@@ -44,23 +48,18 @@ class AddProductionOrderPage(Adw.NavigationPage):
         
         unavailable_names = self.unavailable_names.copy()
         unavailable_order_numbers = self.unavailable_order_numbers.copy()
-        
-        if self.editable:
-            # remove the current item from the list of unavailable names and order numbers
-            unavailable_names.discard(self._current_item_name)
-            unavailable_order_numbers.discard(str(self._current_item_order_number))
-        
+
         error_message = None
         
         if not name:
             error_message = "Bitte geben Sie einen Namen ein."
-        elif name in unavailable_names:
+        elif name in unavailable_names and not self.editable:
             error_message = "Der Name ist bereits vergeben."
         elif not order_number:
             error_message = "Bitte geben Sie eine Auftragsnummer ein."
         elif not order_number.isdigit() or int(order_number) <= 0:
             error_message = "Die Auftragsnummer muss eine positive Zahl sein."
-        elif order_number in unavailable_order_numbers:
+        elif int(order_number) in {int(x) for x in unavailable_order_numbers} and not self.editable:
             error_message = "Die Auftragsnummer ist bereits vergeben."
         elif not units:
             error_message = "Bitte geben Sie die Stückzahl ein."
@@ -80,8 +79,8 @@ class AddProductionOrderPage(Adw.NavigationPage):
         if not self.editable:
             order = ProductionOrderModel(
                 name=name,
-                order_number=order_number,
-                units=units
+                order_number=int(order_number),
+                units=int(units) 
             )
             self._current_order = order
         else:
@@ -90,7 +89,7 @@ class AddProductionOrderPage(Adw.NavigationPage):
             self._current_order.units = int(units)
         
         self.unavailable_names.add(name)
-        self.unavailable_order_numbers.add(order_number)
+        self.unavailable_order_numbers.add(str(order_number))
         
         self.emit("add-production-order", self._current_order)
 
@@ -108,18 +107,46 @@ class AddProductionOrderPage(Adw.NavigationPage):
             self._current_item_name = None
             self._current_item_order_number = None
             self._current_order = None
+            self.delete_button.set_visible(False)
             return
-
+        
+        self.delete_button.set_visible(True)
+        
         self.order_number_entry.set_text(str(order.order_number))
         self.name_entry.set_text(str(order.name))
         self.unit_entry.set_text(str(order.units))
         self.status_row.set_subtitle(str(order.status))
-        self.produced_units_row.set_subtitle(f"{order.produced_units} / {order.units}")
+        self.produced_units_row.set_subtitle(f"{order.units_string}")
         self.efficiency_row.set_subtitle(f"{order.efficiency:.0f} %")
         self.unavailable_names.add(order.name)
         self.unavailable_order_numbers.add(str(order.order_number))
         self._current_item_name = order.name
         self._current_item_order_number = order.order_number
         self._current_order = order
-        
+
+        order.bind_property("name", self.name_entry, "text", GObject.BindingFlags.SYNC_CREATE)
+        order.bind_property(
+            "order_number",
+            self.order_number_entry,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE,
+        )
+        order.bind_property(
+            "units",
+            self.unit_entry,
+            "text",
+            GObject.BindingFlags.SYNC_CREATE,
+        )
+        order.bind_property("status", self.status_row, "subtitle", GObject.BindingFlags.SYNC_CREATE)
+        order.bind_property("units_string", self.produced_units_row, "subtitle", GObject.BindingFlags.SYNC_CREATE)
+
         self.editable = True
+
+    def _on_delete_button_clicked(self, button):
+        """Löscht den aktuellen Auftrag aus den Eingabefeldern und entfernt ihn aus den unavailable Sets."""
+        if self._current_item_name:
+            self.unavailable_names.discard(self._current_item_name)
+        if self._current_item_order_number:
+            self.unavailable_order_numbers.discard(str(self._current_item_order_number))
+        self.emit("remove-production-order", self._current_order)
+        self.fill_content(None)

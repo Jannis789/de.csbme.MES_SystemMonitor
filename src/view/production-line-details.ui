@@ -49,14 +49,29 @@
                             </object>
                         </child>
                         <child>
-                            <object class="GtkButton" id="add_button">
-                                <property name="label">Produktionsauftrag hinzufügen</property>
+                            <object class="GtkBox">
+                                <property name="orientation">horizontal</property>
+                                <property name="spacing">10</property>
+                                <property name="halign">end</property>
                                 <property name="margin-start">10</property>
                                 <property name="margin-end">10</property>
                                 <property name="margin-bottom">10</property>
-                                <style>
-                                    <class name="primary" />
-                                </style>
+                                <child>
+                                    <object class="GtkButton" id="add_button">
+                                        <property name="label">Produktionsauftrag hinzufügen</property>
+                                        <style>
+                                            <class name="primary" />
+                                        </style>
+                                    </object>
+                                </child>
+                                <child>
+                                    <object class="GtkButton" id="start_button">
+                                        <property name="label">Starten</property>
+                                        <style>
+                                            <class name="suggested-action" />
+                                        </style>
+                                    </object>
+                                </child>
                             </object>
                         </child>
                     </object>
