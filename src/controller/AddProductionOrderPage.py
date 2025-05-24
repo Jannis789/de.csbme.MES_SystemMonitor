@@ -139,7 +139,13 @@ class AddProductionOrderPage(Adw.NavigationPage):
         )
         order.bind_property("status", self.status_row, "subtitle", GObject.BindingFlags.SYNC_CREATE)
         order.bind_property("units_string", self.produced_units_row, "subtitle", GObject.BindingFlags.SYNC_CREATE)
-
+        order.bind_property(
+            "efficiency",
+            self.efficiency_row,
+            "subtitle",
+            GObject.BindingFlags.SYNC_CREATE,
+            transform_to=lambda obj, value, *args: f"{value:.0f} %"
+        )
         self.editable = True
 
     def _on_delete_button_clicked(self, button):

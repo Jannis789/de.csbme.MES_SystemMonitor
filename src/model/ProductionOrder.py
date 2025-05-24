@@ -1,5 +1,7 @@
 from gi.repository import GObject
 
+from ..controller.Utility import Utility
+
 class ProductionOrderModel(GObject.Object):
     """produced_units, status, efficiency is optional, since it should be set initially to 0 or 'Initial'"""
 
@@ -70,6 +72,8 @@ class ProductionOrderModel(GObject.Object):
             self._produced_units = value
             self.notify("produced_units")
             self.notify_units_string()
+            if self._units >= self._produced_units:
+                self.efficiency = Utility.calculate_efficiency(self._units, self._produced_units)
 
     @GObject.Property(type=str)
     def status(self):
